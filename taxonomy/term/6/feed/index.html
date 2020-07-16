@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:og="http://ogp.me/ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:schema="http://schema.org/" xmlns:sioc="http://rdfs.org/sioc/ns#" xmlns:sioct="http://rdfs.org/sioc/types#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" version="2.0" xml:base="https://mupsi.github.io/mupsi/">
+  <channel>
+    <title>Diversité et inclusion</title>
+    <link>https://mupsi.github.io/mupsi/</link>
+    <description/>
+    <language>fr</language>
+    
+    <item>
+  <title>Article trop passionnant</title>
+  <link>https://mupsi.github.io/mupsi/node/1</link>
+  <description>&lt;span property="schema:name"&gt;Article trop passionnant&lt;/span&gt;
+
+
+&lt;div class="field field--name-field-tags field--type-entity-reference field--label-hidden field--tag-ref"&gt;
+    &lt;ul class="links field__items field--tag-ref__items"&gt;
+          &lt;li property="schema:about" class="field--tag-ref__item"&gt;Diversité et inclusion&lt;/li&gt;
+      &lt;/ul&gt;
+&lt;/div&gt;
+&lt;span rel="schema:author"&gt;&lt;span lang="" about="https://mupsi.github.io/mupsi/user/1" typeof="schema:Person" property="schema:name" datatype="" xml:lang=""&gt;admin&lt;/span&gt;&lt;/span&gt;
+&lt;span property="schema:dateCreated" content="2020-07-15T19:16:31+00:00"&gt;mer 15/07/2020 - 21:16&lt;/span&gt;
+
+            &lt;div property="schema:text" class="text-content field field--name-body field--type-text-with-summary field--label-hidden field__item"&gt;&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum varius nunc enim, sit amet vestibulum lacus tempus sed. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus nibh ipsum, suscipit non blandit nec, malesuada at nibh. Nullam ut sagittis sem. Integer vehicula ac felis quis tristique. Mauris ornare hendrerit nisi eget elementum. Mauris sollicitudin, leo et bibendum dapibus, mauris sem porttitor risus, nec rutrum tortor ante quis est. Praesent blandit sapien sit amet velit fermentum, a porttitor metus fermentum. Aenean feugiat, risus ut ullamcorper facilisis, odio nunc feugiat ante, quis accumsan purus quam et ante. Morbi ultrices porttitor ex, vitae condimentum ante gravida id.&lt;/p&gt;
+
+&lt;p&gt;Et là, un exemple de code :&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;code class="language-php"&gt;&lt;?php
+
+/**
+ * @file
+ * Router script for the built-in PHP web server.
+ *
+ * The built-in web server should only be used for development and testing as it
+ * has a number of limitations that makes running Drupal on it highly insecure
+ * and somewhat limited.
+ *
+ * Note that:
+ * - The server is single-threaded, any requests made during the execution of
+ *   the main request will hang until the main request has been completed.
+ * - The web server does not enforce any of the settings in .htaccess in
+ *   particular a remote user will be able to download files that normally would
+ *   be protected from direct access such as .module files.
+ *
+ * The router script is needed to work around a bug in PHP, see
+ * https://bugs.php.net/bug.php?id=61286.
+ *
+ * Usage:
+ * php -S localhost:8888 .ht.router.php
+ *
+ * @see http://php.net/manual/en/features.commandline.webserver.php
+ */
+
+$url = parse_url($_SERVER['REQUEST_URI']);
+if (file_exists(__DIR__ . $url['path'])) {
+  // Serve the requested resource as-is.
+  return FALSE;
+}
+
+// Work around the PHP bug.
+$path = $url['path'];
+$script = 'index.php';
+if (strpos($path, '.php') !== FALSE) {
+  // Work backwards through the path to check if a script exists. Otherwise
+  // fallback to index.php.
+  do {
+    $path = dirname($path);
+    if (preg_match('/\.php$/', $path) &amp;&amp; is_file(__DIR__ . $path)) {
+      // Discovered that the path contains an existing PHP file. Use that as the
+      // script to include.
+      $script = ltrim($path, '/');
+      break;
+    }
+  } while ($path !== '/' &amp;&amp; $path !== '.');
+}
+
+// Update $_SERVER variables to point to the correct index-file.
+$index_file_absolute = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . $script;
+$index_file_relative = DIRECTORY_SEPARATOR . $script;
+
+// SCRIPT_FILENAME will point to the router script itself, it should point to
+// the full path of index.php.
+$_SERVER['SCRIPT_FILENAME'] = $index_file_absolute;
+
+// SCRIPT_NAME and PHP_SELF will either point to index.php or contain the full
+// virtual path being requested depending on the URL being requested. They
+// should always point to index.php relative to document root.
+$_SERVER['SCRIPT_NAME'] = $index_file_relative;
+$_SERVER['PHP_SELF'] = $index_file_relative;
+
+// Require the script and let core take over.
+require $_SERVER['SCRIPT_FILENAME'];
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nulla eget hendrerit tellus, eget condimentum augue. Etiam id nibh felis. Duis justo massa, aliquet sed faucibus nec, pretium ut felis. Praesent venenatis eleifend elit et tempor. Aliquam erat volutpat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nunc malesuada lacus et urna pharetra imperdiet. Suspendisse quis fermentum ligula. Vestibulum maximus condimentum vestibulum. Donec nibh diam, lacinia ac dui eu, rhoncus venenatis velit. Duis orci est, tempus eget blandit nec, blandit nec massa. Aliquam erat volutpat.&lt;/p&gt;
+&lt;/div&gt;
+      </description>
+  <pubDate>Wed, 15 Jul 2020 19:16:31 +0000</pubDate>
+    <dc:creator>admin</dc:creator>
+    <guid isPermaLink="false">1 at https://mupsi.github.io/mupsi</guid>
+    </item>
+
+  </channel>
+</rss>
